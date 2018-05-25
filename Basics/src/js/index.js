@@ -11,10 +11,18 @@ class Index extends React.Component{
             //one node div
             <div>
                 {header}
-                <Body/>
+                <Body userName={"Mary"}
+                age={50}/>
                 <Footer/>
             </div>
         );
+    }
+
+    componentWillMount(){
+        console.log("Index Component Will Mount");
+    }
+    componentDidMount(){
+        console.log("Index Component Did Mount");
     }
 }
 
