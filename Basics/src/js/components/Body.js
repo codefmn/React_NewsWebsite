@@ -1,13 +1,24 @@
 import React from 'react';
+import Child from './Child';
 
 export default class Body extends React.Component{
     constructor(){
         super();
         this.state = {
             userName:"Ashley",
-            age:20
+            age:20,
+            uni:"UQ",
+            major:"IT"
         }
     }
+
+    changeInfo() {
+        this.setState({uni:"QUT"});
+    };
+        
+    handleChange(event) {
+        this.setState({major: event.target.value});
+    };
 
     render(){
         // comment
@@ -18,15 +29,18 @@ export default class Body extends React.Component{
         setTimeout(()=>{
             this.setState({userName:"Amy", age:30});
         },5000);
-        
+
         return(
             <div>
                 {/* comment */}
-                <h2>Body</h2>
                 <p>{userName=="" ? "Not login" : "User:"+userName}</p>
                 <input type="button" value={valueName} disabled={boolInput}/>
-                <p>{this.state.userName} {this.state.age}</p>
-                <p>{this.props.userName} {this.props.age}</p>
+                <p>State:{this.state.userName} {this.state.age}</p>
+                <p>Parent props:{this.props.userName} {this.props.age}</p>
+                <label>Event: {this.state.uni}  </label>
+                <input type="button" value="Submit" onClick={this.changeInfo.bind(this)}/>
+                <p>Child Change: {this.state.major}</p>
+                <Child handleChange={this.handleChange.bind(this)}/>
             </div>
         );
     }
