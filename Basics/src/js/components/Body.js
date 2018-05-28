@@ -40,7 +40,7 @@ export default class Body extends React.Component{
                 <label>Event: {this.state.uni}  </label>
                 <input type="button" value="Submit" onClick={this.onClickChange.bind(this)}/>
                 <p>Child Change: {this.state.major}</p>
-                <Child handleChange={this.handleChange.bind(this)}/>
+                <Child handle={this.handleChange.bind(this)}/>
             </div>
         );
     }

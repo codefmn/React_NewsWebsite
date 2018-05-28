@@ -5,7 +5,7 @@ export default class Child extends React.Component{
         return(
             <div>
                 <label>Change value in Child:</label>
-                <input type="text" onChange={this.props.handleChange}/>
+                <input type="text" onChange={this.props.handle}/>
             </div>
         );
     }
