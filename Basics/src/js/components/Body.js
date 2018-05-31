@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Child from './Child';
 
 export default class Body extends React.Component{
@@ -14,6 +15,13 @@ export default class Body extends React.Component{
 
     onClickChange() {
         this.setState({uni:"QUT"});
+        //findDOMNode
+        // var btnId = document.getElementById('btnId');
+        // ReactDOM.findDOMNode(btnId).style.color='red';
+        // console.log(btnId);
+        //refs
+        this.refs.btnRef.style.color='green';
+        console.log(this.refs.btnRef);
     };
         
     handleChange(event) {
@@ -38,7 +46,7 @@ export default class Body extends React.Component{
                 <p>State:{this.state.userName} {this.state.age}</p>
                 <p>Parent props:{this.props.userName} {this.props.age}</p>
                 <label>Event: {this.state.uni}  </label>
-                <input type="button" value="Submit" onClick={this.onClickChange.bind(this)}/>
+                <input id="btnId" ref="btnRef" type="button" value="Submit" onClick={this.onClickChange.bind(this)}/>
                 <p>Child Change: {this.state.major}</p>
                 <Child handle={this.handleChange.bind(this)}/>
             </div>
