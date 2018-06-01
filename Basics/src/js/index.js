@@ -5,15 +5,15 @@ import Body from './components/Body';
 import Footer from './components/Footer';
 import 'antd/dist/antd.css'; 
 
-class Index extends React.Component{
+export default class Index extends React.Component{
     render(){
         var header = <Header/>;
         return(
             //one node div
             <div>
                 {header}
-                <Body userName={"Mary"}
-                age={50}/>
+                <div>{this.props.children}</div>
+                <Body userName={"Mary"} age={50}/>
                 <Footer/>
             </div>
         );
@@ -27,8 +27,3 @@ class Index extends React.Component{
     }
 }
 
-//entry
-ReactDom.render(
-    <Index/>,
-    document.getElementById('container')
-);
