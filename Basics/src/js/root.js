@@ -14,7 +14,7 @@ export default class Root extends React.Component{
                 <Route component={Index} path="/">
                     <Route component={Details} path="details"></Route>
                 </Route>
-                <Route component={List} path="list"></Route>
+                <Route component={List} path="list/:id"></Route>
             </Router>
         );
     }
