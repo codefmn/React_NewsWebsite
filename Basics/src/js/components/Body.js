@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Child from './Child';
+import {Input} from 'antd';
 
 export default class Body extends React.Component{
     constructor(){
@@ -42,13 +43,14 @@ export default class Body extends React.Component{
             <div>
                 {/* comment */}
                 <p>{userName=="" ? "Not login" : "User:"+userName}</p>
-                <input type="button" value={valueName} disabled={boolInput}/>
+                <Input type="button" value={valueName} disabled={boolInput}/>
                 <p>State:{this.state.userName} {this.state.age}</p>
                 <p>Parent props:{this.props.userName} {this.props.age}</p>
                 <label>Event: {this.state.uni}  </label>
                 <input id="btnId" ref="btnRef" type="button" value="Submit" onClick={this.onClickChange.bind(this)}/>
                 <p>Child Change: {this.state.major}</p>
                 <Child handle={this.handleChange.bind(this)}/>
+                <Input/>
             </div>
         );
     }
