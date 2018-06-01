@@ -35,9 +35,9 @@ export default class Body extends React.Component{
         var valueName = "Please\u0020Login";//unicode\u0020
         var boolInput = false;
 
-        setTimeout(()=>{
-            this.setState({userName:"Amy", age:30});
-        },5000);
+        // setTimeout(()=>{
+        //     this.setState({userName:"Amy", age:30});
+        // },5000);
 
         return(
             <div>
