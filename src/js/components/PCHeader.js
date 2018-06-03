@@ -22,15 +22,15 @@ export default class PCHeader extends React.Component{
                         </a>
                     </Col>
                     <Col span={16}>
-                        <Menu selectedKeys={this.state.current} mode="horizontal">
+                        <Menu selectedKeys={[this.state.current]} mode="horizontal">
                             <MenuItem key="top">
-                                <Icon type="appstore"/> Top
+                                <Icon type="home"/> Top
                             </MenuItem>
                             <MenuItem key="sports">
-                                <Icon type="appstore"/> Sports
+                                <Icon type="rocket"/> Sports
                             </MenuItem>
                             <MenuItem key="entertainment">
-                                <Icon type="appstore"/> Entertainment
+                                <Icon type="video-camera"/> Entertainment
                             </MenuItem>
                             <MenuItem key="technology">
                                 <Icon type="appstore"/> Technology
