@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col,Button,Menu,Icon,Form} from 'antd';
+import {Row,Col,Button,Menu,Icon,Form,Modal} from 'antd';
 
 class PCHeader extends React.Component{
     constructor(){
@@ -14,8 +14,21 @@ class PCHeader extends React.Component{
         }
     }
 
+    showModal(value){
+        this.setState({modalVisible: value});
+    }
+
+    handleClick(e){
+        if(e.key="register"){
+            this.setState({current:"register"});
+            this.showModal(true);
+        }else{
+            this.setState({current:e.key});
+        }
+    }
+
     render(){
-        const {getFieldProps} = this.props.form;
+        const {getFieldDecorator} = this.props.form;
 
         const userShow = this.state.hasLogined 
         ?
@@ -31,6 +44,13 @@ class PCHeader extends React.Component{
 
         return(
             <header>
+                <Modal title="User" visible={this.state.modalVisible}
+                onCancel={()=>this.showModal(false)}
+                onOk={()=>this.showModal(false)}
+                cancelText="cancel" okText="Done">
+                    <p>111</p>
+                </Modal>
+
                 <Row>
                     <Col span={1}></Col>
                     <Col span={6}>
@@ -40,7 +60,8 @@ class PCHeader extends React.Component{
                         </a>
                     </Col>
                     <Col span={16}>
-                        <Menu selectedKeys={[this.state.current]} mode="horizontal">
+                        <Menu selectedKeys={[this.state.current]} mode="horizontal"
+                        onClick={this.handleClick.bind(this)}>
                             <Menu.Item key="top">
                                 <Icon type="home"/> Top
                             </Menu.Item>
