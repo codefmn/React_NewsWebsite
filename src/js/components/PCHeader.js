@@ -1,16 +1,34 @@
 import React from 'react';
-import {Row,Col,Menu,Icon} from 'antd';
-import MenuItem from 'antd/lib/menu/MenuItem';
+import {Row,Col,Button,Menu,Icon,Form} from 'antd';
 
-export default class PCHeader extends React.Component{
+class PCHeader extends React.Component{
     constructor(){
         super();
         this.state = {
             current: "top",
+            modalVisible: false,
+            action: 'login',
+            hasLogined: false,
+            userNickname: "Ash",
+            userID: 0
         }
     }
 
     render(){
+        const {getFieldProps} = this.props.form;
+
+        const userShow = this.state.hasLogined 
+        ?
+        <Menu.Item key="logout">
+            <Icon type="user" />{this.state.userNickname}&nbsp;
+            <Button type="primary">Account</Button>&nbsp;
+            <Button type="ghost">Logout</Button>
+        </Menu.Item> 
+        :
+        <Menu.Item key="register">
+            <Icon type="user" />Sign Up
+        </Menu.Item>;
+
         return(
             <header>
                 <Row>
@@ -23,18 +41,19 @@ export default class PCHeader extends React.Component{
                     </Col>
                     <Col span={16}>
                         <Menu selectedKeys={[this.state.current]} mode="horizontal">
-                            <MenuItem key="top">
+                            <Menu.Item key="top">
                                 <Icon type="home"/> Top
-                            </MenuItem>
-                            <MenuItem key="sports">
+                            </Menu.Item>
+                            <Menu.Item key="sports">
                                 <Icon type="rocket"/> Sports
-                            </MenuItem>
-                            <MenuItem key="entertainment">
+                            </Menu.Item>
+                            <Menu.Item key="entertainment">
                                 <Icon type="video-camera"/> Entertainment
-                            </MenuItem>
-                            <MenuItem key="technology">
+                            </Menu.Item>
+                            <Menu.Item key="technology">
                                 <Icon type="appstore"/> Technology
-                            </MenuItem>
+                            </Menu.Item>
+                            {userShow}
                         </Menu>
                     </Col>
                     <Col span={1}></Col>
@@ -43,3 +62,5 @@ export default class PCHeader extends React.Component{
         );
     }
 }
+
+export default PCHeader = Form.create({})(PCHeader);
