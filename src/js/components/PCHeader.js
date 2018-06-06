@@ -19,11 +19,10 @@ class PCHeader extends React.Component{
     }
 
     handleClick(e){
-        if(e.key="register"){
-            this.setState({current:"register"});
+        this.setState({current:e.key});
+        console.log(e.key);
+        if(e.key=="register"){
             this.showModal(true);
-        }else{
-            this.setState({current:e.key});
         }
     }
 
@@ -47,7 +46,7 @@ class PCHeader extends React.Component{
                 <Modal title="User" visible={this.state.modalVisible}
                 onCancel={()=>this.showModal(false)}
                 onOk={()=>this.showModal(false)}
-                cancelText="cancel" okText="Done">
+                cancelText="Cancel" okText="Done">
                     <p>111</p>
                 </Modal>
 
