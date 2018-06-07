@@ -1,5 +1,7 @@
 import React from 'react';
-import {Row,Col,Button,Menu,Icon,Form,Modal} from 'antd';
+import {Row,Col,Button,Menu,Icon,Form,Modal,Input,message} from 'antd';
+
+const action_base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
 class PCHeader extends React.Component{
     constructor(){
@@ -16,6 +18,24 @@ class PCHeader extends React.Component{
 
     showModal(value){
         this.setState({modalVisible: value});
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        var fetchOptions = { method: 'GET' };
+        var formData = this.props.form.getFieldsValue();
+        console.log(formData);
+        fetch(action_base_url + this.state.action
+		+ "&username="+formData.userName+"&password="+formData.password
+		+"&r_userName=" + formData.r_userName + "&r_password="
+		+ formData.r_password + "&r_confirmPassword="
+        + formData.r_confirmPassword, fetchOptions)
+        .then(response=>response.json())
+        .then(json=>{
+            this.setState({userNickname: json.NickUserName, userID: json.UserId});
+        })
+        message.success("success!");
+        this.showModal(false);
     }
 
     handleClick(e){
@@ -47,7 +67,18 @@ class PCHeader extends React.Component{
                 onCancel={()=>this.showModal(false)}
                 onOk={()=>this.showModal(false)}
                 cancelText="Cancel" okText="Done">
-                    <p>111</p>
+                    <Form onSubmit={this.handleSubmit.bind(this)}>
+                        <Form.Item>
+                            <Input placeholder="Username" {...getFieldDecorator("r_userName")}/>
+                        </Form.Item>
+                        <Form.Item>
+                            <Input type="password" placeholder="Password" {...getFieldDecorator("r_password")}/>
+                        </Form.Item>
+                        <Form.Item>
+                            <Input type="password" placeholder="Confirm Password" {...getFieldDecorator("r_confirmPassword")}/>
+                        </Form.Item>
+                        <Button type="primary" htmlType="submit">Sign Up</Button>
+                    </Form>
                 </Modal>
 
                 <Row>
