@@ -1,5 +1,6 @@
 import React from 'react';
-import {Row,Col,Button,Menu,Icon,Form,Modal,Input,message} from 'antd';
+import {Row,Col,Button,Menu,Icon,
+    Form,Modal,Input,Tabs,message} from 'antd';
 
 const action_base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
@@ -11,7 +12,7 @@ class PCHeader extends React.Component{
             modalVisible: false,
             action: 'login',
             hasLogined: false,
-            userNickname: "Ash",
+            userNickname: "",
             userID: 0
         }
     }
@@ -34,15 +35,25 @@ class PCHeader extends React.Component{
         .then(json=>{
             this.setState({userNickname: json.NickUserName, userID: json.UserId});
         })
+        if(this.state.action="login"){
+            this.setState({hasLogined:true});
+        }
         message.success("success!");
         this.showModal(false);
     }
 
     handleClick(e){
         this.setState({current:e.key});
-        console.log(e.key);
         if(e.key=="register"){
             this.showModal(true);
+        }
+    }
+
+    callback(key){
+        if(key==1){
+            this.setState({action:'login'});
+        }else if(key==2){
+            this.setState({action:'register'});
         }
     }
 
@@ -67,18 +78,33 @@ class PCHeader extends React.Component{
                 onCancel={()=>this.showModal(false)}
                 onOk={()=>this.showModal(false)}
                 cancelText="Cancel" okText="Done">
-                    <Form onSubmit={this.handleSubmit.bind(this)}>
-                        <Form.Item>
-                            <Input placeholder="Username" {...getFieldDecorator("r_userName")}/>
-                        </Form.Item>
-                        <Form.Item>
-                            <Input type="password" placeholder="Password" {...getFieldDecorator("r_password")}/>
-                        </Form.Item>
-                        <Form.Item>
-                            <Input type="password" placeholder="Confirm Password" {...getFieldDecorator("r_confirmPassword")}/>
-                        </Form.Item>
-                        <Button type="primary" htmlType="submit">Sign Up</Button>
-                    </Form>
+                    <Tabs defaultActiveKey="1" onChange={this.callback.bind(this)}>
+                        <Tabs.TabPane key="1" tab="Login">
+                            <Form onSubmit={this.handleSubmit.bind(this)}>
+                                <Form.Item>
+                                    <Input placeholder="Username" {...getFieldDecorator("userName")}/>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Input type="password" placeholder="Password" {...getFieldDecorator("password")}/>
+                                </Form.Item>
+                                <Button type="primary" htmlType="submit">Login</Button>
+                            </Form>
+                        </Tabs.TabPane>
+                        <Tabs.TabPane key="2" tab="Sign up">
+                            <Form onSubmit={this.handleSubmit.bind(this)}>
+                                <Form.Item>
+                                    <Input placeholder="Username" {...getFieldDecorator("r_userName")}/>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Input type="password" placeholder="Password" {...getFieldDecorator("r_password")}/>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Input type="password" placeholder="Confirm Password" {...getFieldDecorator("r_confirmPassword")}/>
+                                </Form.Item>
+                                <Button type="primary" htmlType="submit">Sign Up</Button>
+                            </Form>
+                        </Tabs.TabPane>
+                    </Tabs>
                 </Modal>
 
                 <Row>
