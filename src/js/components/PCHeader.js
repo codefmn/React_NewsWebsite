@@ -34,11 +34,13 @@ class PCHeader extends React.Component{
         .then(response=>response.json())
         .then(json=>{
             this.setState({userNickname: json.NickUserName, userID: json.UserId});
+            localStorage.userID = json.UserId;
+            localStorage.userNickname = json.NickUserName;
         })
         if(this.state.action="login"){
             this.setState({hasLogined:true});
         }
-        message.success("success!");
+        message.success("Login!");
         this.showModal(false);
     }
 
@@ -57,6 +59,23 @@ class PCHeader extends React.Component{
         }
     }
 
+    logout(){
+        localStorage.userID='';
+        localStorage.userNickname='';
+        this.setState({hasLogined:false});
+        message.success("Logout!")
+    }
+
+    componentWillMount(){
+        if(localStorage.userID!=''){
+            this.setState({
+                hasLogined:true,
+                userNickname:localStorage.userNickname,
+                userID:localStorage.userID
+            });
+        }
+    }
+
     render(){
         const {getFieldDecorator} = this.props.form;
 
@@ -64,8 +83,8 @@ class PCHeader extends React.Component{
         ?
         <Menu.Item key="logout">
             <Icon type="user" />{this.state.userNickname}&nbsp;
-            <Button type="primary">Account</Button>&nbsp;
-            <Button type="ghost">Logout</Button>
+            <Button type="primary">Info</Button>&nbsp;
+            <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
         </Menu.Item> 
         :
         <Menu.Item key="register">
