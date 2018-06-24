@@ -2,7 +2,7 @@ import React from 'react';
 import {Row,Col,Button,Menu,Icon,
     Form,Modal,Input,Tabs,message} from 'antd';
 
-const action_base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
+const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
 class PCHeader extends React.Component{
     constructor(){
@@ -26,7 +26,7 @@ class PCHeader extends React.Component{
         var fetchOptions = { method: 'GET' };
         var formData = this.props.form.getFieldsValue();
         console.log(formData);
-        fetch(action_base_url + this.state.action
+        fetch(base_url + this.state.action
 		+ "&username="+formData.userName+"&password="+formData.password
 		+"&r_userName=" + formData.r_userName + "&r_password="
 		+ formData.r_password + "&r_confirmPassword="
