@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Router,Route,hashHistory} from 'react-router';
 import MediaQuery from 'react-responsive';
 import PCIndex from './components/PCIndex';
+import PCNewsDetails from './components/PCNewsDetails';
 import MobileIndex from './components/MobileIndex';
 import 'antd/dist/antd.css';
 
@@ -11,7 +12,10 @@ export default class Root extends React.Component{
         return(
             <div>
                 <MediaQuery query="(min-device-width: 1224px)">
-                    <PCIndex />
+                    <Router history={hashHistory}>
+                        <Route path="/" component={PCIndex}></Route>
+                        <Route path="/details/:uniquekey" component={PCNewsDetails}></Route>
+                    </Router>
                 </MediaQuery>
                 <MediaQuery query="(max-device-width: 1224px)">
                     <MobileIndex />
