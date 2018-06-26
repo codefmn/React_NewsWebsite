@@ -77,7 +77,7 @@ class PCHeader extends React.Component{
     }
 
     render(){
-        const {getFieldDecorator} = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         const userShow = this.state.hasLogined 
         ?
@@ -101,10 +101,10 @@ class PCHeader extends React.Component{
                         <Tabs.TabPane key="1" tab="Login">
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 <Form.Item>
-                                    <Input placeholder="Username" {...getFieldDecorator("userName")}/>
+                                    <Input placeholder="Username" {...getFieldProps("userName")}/>
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Password" {...getFieldDecorator("password")}/>
+                                    <Input type="password" placeholder="Password" {...getFieldProps("password")}/>
                                 </Form.Item>
                                 <Button type="primary" htmlType="submit">Login</Button>
                             </Form>
@@ -112,13 +112,13 @@ class PCHeader extends React.Component{
                         <Tabs.TabPane key="2" tab="Sign up">
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 <Form.Item>
-                                    <Input placeholder="Username" {...getFieldDecorator("r_userName")}/>
+                                    <Input placeholder="Username" {...getFieldProps("r_userName")}/>
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Password" {...getFieldDecorator("r_password")}/>
+                                    <Input type="password" placeholder="Password" {...getFieldProps("r_password")}/>
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Confirm Password" {...getFieldDecorator("r_confirmPassword")}/>
+                                    <Input type="password" placeholder="Confirm Password" {...getFieldProps("r_confirmPassword")}/>
                                 </Form.Item>
                                 <Button type="primary" htmlType="submit">Sign Up</Button>
                             </Form>
