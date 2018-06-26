@@ -82,7 +82,7 @@ class PCHeader extends React.Component{
         const userShow = this.state.hasLogined 
         ?
         <Menu.Item key="logout">
-            <Icon type="user" />{this.state.userNickname}&nbsp;
+            <Icon type="user" />{this.state.userID}&nbsp;
             <Button type="primary">Info</Button>&nbsp;
             <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
         </Menu.Item> 
