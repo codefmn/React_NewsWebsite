@@ -77,12 +77,12 @@ class PCHeader extends React.Component{
     }
 
     render(){
-        const {getFieldProps} = this.props.form;
+        const {getFieldDecorator} = this.props.form;
 
         const userShow = this.state.hasLogined 
         ?
         <Menu.Item key="logout">
-            <Icon type="user" />{this.state.userID}&nbsp;
+            <Icon type="user" />Name:{this.state.userNickname}, ID:{this.state.userID}&nbsp;
             <Button type="primary">Info</Button>&nbsp;
             <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
         </Menu.Item> 
@@ -101,10 +101,10 @@ class PCHeader extends React.Component{
                         <Tabs.TabPane key="1" tab="Login">
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 <Form.Item>
-                                    <Input placeholder="Username" {...getFieldProps("userName")}/>
+                                    {getFieldDecorator('userName')(<Input  placeholder="Username"/>)}
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Password" {...getFieldProps("password")}/>
+                                    {getFieldDecorator('password')(<Input type="password" placeholder="Password" />)}
                                 </Form.Item>
                                 <Button type="primary" htmlType="submit">Login</Button>
                             </Form>
@@ -112,13 +112,13 @@ class PCHeader extends React.Component{
                         <Tabs.TabPane key="2" tab="Sign up">
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 <Form.Item>
-                                    <Input placeholder="Username" {...getFieldProps("r_userName")}/>
+                                    {getFieldDecorator("r_userName")(<Input placeholder="Username" />)}
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Password" {...getFieldProps("r_password")}/>
+                                    {getFieldDecorator("r_password")(<Input type="password" placeholder="Password" />)}
                                 </Form.Item>
                                 <Form.Item>
-                                    <Input type="password" placeholder="Confirm Password" {...getFieldProps("r_confirmPassword")}/>
+                                    {getFieldDecorator("r_confirmPassword")(<Input type="password" placeholder="Confirm Password" />)}
                                 </Form.Item>
                                 <Button type="primary" htmlType="submit">Sign Up</Button>
                             </Form>
@@ -159,4 +159,4 @@ class PCHeader extends React.Component{
     }
 }
 
-export default PCHeader = Form.create({})(PCHeader);
+export default PCHeader = Form.create()(PCHeader);
