@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentsBlock from './CommentsBlock';
 
 const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
@@ -29,7 +30,10 @@ export default class PCNewsDetails extends React.Component{
 
     render(){
         return(
-            <div className="article" dangerouslySetInnerHTML={this.createHtml()} />
+            <div>
+                <div className="article" dangerouslySetInnerHTML={this.createHtml()} />
+                <CommentsBlock ukey={this.props.params.uniquekey}/>
+            </div>
         );
     }
 }
