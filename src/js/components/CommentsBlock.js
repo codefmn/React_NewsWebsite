@@ -40,7 +40,7 @@ class CommentsBlock extends React.Component{
         let {getFieldProps} = this.props.form;
         const commentsList = this.state.comments.length ?
         this.state.comments.map((value,index)=>
-        <Card key={index} title={value.UserId}>
+        <Card key={index} title={value.UserName}>
             {value.Comments}
         </Card>)
         :"no comments yet";

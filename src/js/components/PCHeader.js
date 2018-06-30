@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col,Button,Menu,Icon,
+import {Row,Col,Button,Menu,Icon,Avatar,
     Form,Modal,Input,Tabs,message} from 'antd';
 
 const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
@@ -82,7 +82,8 @@ class PCHeader extends React.Component{
         const userShow = this.state.hasLogined 
         ?
         <Menu.Item key="logout">
-            <Icon type="user" />Name:{this.state.userNickname}, ID:{this.state.userID}&nbsp;
+            <Avatar size="large">{this.state.userID}</Avatar>
+            <span> Hi, {this.state.userNickname} </span>
             <Button type="primary">Info</Button>&nbsp;
             <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
         </Menu.Item> 
