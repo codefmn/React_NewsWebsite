@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card,Form,Input,Button} from 'antd';
+import {Card, Form, Input, Button, notification} from 'antd';
 
 const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
@@ -30,28 +30,51 @@ class CommentsBlock extends React.Component{
         }
         fetch(base_url+"comment&userid="+localStorage.userID+"&uniquekey="+
         this.props.ukey+"&commnet="+formdata.newComment, fetchOptions)
-        .then(response=>response.json())
-        .then(json=>{
-            this.componentDidMount();
-        })
+            .then(response=>response.json())
+            .then(json=>{
+                this.componentDidMount();
+            })
+    }
+
+    addBookmark(e){
+        var fetchOptions ={
+            method: 'GET'
+        }
+        fetch(base_url+"uc&userid="+localStorage.userID+"&uniquekey="+
+        this.props.ukey, fetchOptions)
+            .then(response=>response.json())
+            .then(json=>{
+                notification.success({
+                    message:'Sucess',
+                    description:'Added to Bookmarks.',
+                    duration: 0,
+                    placement: 'bottomLeft'
+                });
+            });
     }
 
     render(){
-        let {getFieldProps} = this.props.form;
+        let {getFieldDecorator} = this.props.form;
         const commentsList = this.state.comments.length ?
         this.state.comments.map((value,index)=>
         <Card key={index} title={value.UserName}>
             {value.Comments}
         </Card>)
         :"no comments yet";
+        
         return(
             <div>
                 {commentsList}
                 <Form onSubmit={this.handleSubmit.bind(this)}>
                     <Form.Item>
-                        <Input type="textarea" placeholder="new comment" {...getFieldProps('newComment')}/>
+                        {getFieldDecorator("newComment")(<Input type="textarea" placeholder="new comment" />)}
                     </Form.Item>
-                    <Button type="primay" htmlType="submit">Submit</Button>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">Submit</Button>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit" onClick={this.addBookmark.bind(this)}>Bookmark</Button>
+                    </Form.Item>
                 </Form>
             </div>
         );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Row,Col,Button,Menu,Icon,Avatar,
     Form,Modal,Input,Tabs,message} from 'antd';
+import {Link} from 'react-router';
 
 const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
 
@@ -84,7 +85,9 @@ class PCHeader extends React.Component{
         <Menu.Item key="logout">
             <Avatar size="large">{this.state.userID}</Avatar>
             <span> Hi, {this.state.userNickname} </span>
-            <Button type="primary">Info</Button>&nbsp;
+            <Link to="/userinfo" target="_blank">
+                <Button type="primary">Info</Button>&nbsp;
+            </Link>
             <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
         </Menu.Item> 
         :

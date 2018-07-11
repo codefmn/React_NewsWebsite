@@ -4,6 +4,7 @@ import {Router,Route,hashHistory} from 'react-router';
 import MediaQuery from 'react-responsive';
 import PCIndex from './components/PCIndex';
 import PCNewsDetails from './components/PCNewsDetails';
+import UserInfo from './components/UserInfo';
 import MobileIndex from './components/MobileIndex';
 import 'antd/dist/antd.css';
 
@@ -15,6 +16,7 @@ export default class Root extends React.Component{
                     <Router history={hashHistory}>
                         <Route path="/" component={PCIndex}></Route>
                         <Route path="/details/:uniquekey" component={PCNewsDetails}></Route>
+                        <Route path="/userinfo" component={UserInfo}></Route>
                     </Router>
                 </MediaQuery>
                 <MediaQuery query="(max-device-width: 1224px)">
