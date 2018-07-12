@@ -83,7 +83,7 @@ class PCHeader extends React.Component{
         const userShow = this.state.hasLogined 
         ?
         // <Menu.Item key="logout">
-        <div>
+        <div style={{"float":"right"}}>
             <Avatar size="large">{this.state.userID}</Avatar>
             <span> Hi, {this.state.userNickname} </span>
             <Link to="/userinfo" target="_blank">
@@ -94,7 +94,9 @@ class PCHeader extends React.Component{
         // </Menu.Item> 
         :
         // <Menu.Item key="register">
+        <div style={{"float":"right"}}>
             <Button type="primary" onClick={()=>this.showModal(true)}><Icon type="user" />Sign Up</Button>
+        </div>
         // </Menu.Item>
         ;
 
@@ -134,14 +136,14 @@ class PCHeader extends React.Component{
                 </Modal>
 
                 <Row>
-                    <Col span={1}></Col>
-                    <Col span={6}>
+                    <Col span={2}></Col>
+                    <Col span={8}>
                         <a href="/" className="logo">
                             <img src="./src/images/icon.png" alt="logo"/>
                             <span>News Website</span>
                         </a>
                     </Col>
-                    <Col span={16}>
+                    <Col span={12}>
                         {/* <Menu selectedKeys={[this.state.current]} mode="horizontal"
                         onClick={this.handleClick.bind(this)}>
                             <Menu.Item key="top">
@@ -159,7 +161,7 @@ class PCHeader extends React.Component{
                             {userShow}
                         {/* </Menu> */}
                     </Col>
-                    <Col span={1}></Col>
+                    <Col span={2}></Col>
                 </Row>
             </header>
         );
