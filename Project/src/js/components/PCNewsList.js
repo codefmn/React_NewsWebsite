@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {Link} from 'react-router';
 
 const base_url = "http://newsapi.gugujiankong.com/Handler.ashx?action=";
@@ -12,13 +13,18 @@ export default class PCNewsList extends React.Component{
     }
 
     componentDidMount(){
-        var fetchOptions = {
-            method: 'GET'
-        }
-        fetch(base_url+"getnews&type="+this.props.type
-        +"&count="+this.props.count, fetchOptions)
-        .then(response=>response.json())
-        .then(json=>this.setState({news:json}));
+        // var fetchOptions = {
+        //     method: 'GET'
+        // }
+        // fetch(base_url+"getnews&type="+this.props.type
+        // +"&count="+this.props.count, fetchOptions)
+        // .then(response=>response.json())
+        // .then(json=>this.setState({news:json}));
+
+        axios.get(base_url+"getnews&type="+this.props.type+"&count="+this.props.count)
+            .then(response=>{
+                this.setState({news:response.data});
+            })
     }
 
     render(){
