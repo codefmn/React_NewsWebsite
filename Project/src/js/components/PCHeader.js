@@ -45,12 +45,12 @@ class PCHeader extends React.Component{
         this.showModal(false);
     }
 
-    handleClick(e){
-        this.setState({current:e.key});
-        if(e.key=="register"){
-            this.showModal(true);
-        }
-    }
+    // handleClick(e){
+    //     this.setState({current:e.key});
+    //     if(e.key=="register"){
+    //         this.showModal(true);
+    //     }
+    // }
 
     callback(key){
         if(key==1){
@@ -82,18 +82,21 @@ class PCHeader extends React.Component{
 
         const userShow = this.state.hasLogined 
         ?
-        <Menu.Item key="logout">
+        // <Menu.Item key="logout">
+        <div>
             <Avatar size="large">{this.state.userID}</Avatar>
             <span> Hi, {this.state.userNickname} </span>
             <Link to="/userinfo" target="_blank">
                 <Button type="primary">Info</Button>&nbsp;
             </Link>
             <Button type="ghost" onClick={this.logout.bind(this)}>Logout</Button>
-        </Menu.Item> 
+        </div>
+        // </Menu.Item> 
         :
-        <Menu.Item key="register">
-            <Icon type="user" />Sign Up
-        </Menu.Item>;
+        // <Menu.Item key="register">
+            <Button type="primary" onClick={()=>this.showModal(true)}><Icon type="user" />Sign Up</Button>
+        // </Menu.Item>
+        ;
 
         return(
             <header>
@@ -139,7 +142,7 @@ class PCHeader extends React.Component{
                         </a>
                     </Col>
                     <Col span={16}>
-                        <Menu selectedKeys={[this.state.current]} mode="horizontal"
+                        {/* <Menu selectedKeys={[this.state.current]} mode="horizontal"
                         onClick={this.handleClick.bind(this)}>
                             <Menu.Item key="top">
                                 <Icon type="home"/> Top
@@ -152,9 +155,9 @@ class PCHeader extends React.Component{
                             </Menu.Item>
                             <Menu.Item key="technology">
                                 <Icon type="appstore"/> Technology
-                            </Menu.Item>
+                            </Menu.Item> */}
                             {userShow}
-                        </Menu>
+                        {/* </Menu> */}
                     </Col>
                     <Col span={1}></Col>
                 </Row>
