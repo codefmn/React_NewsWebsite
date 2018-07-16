@@ -83,7 +83,7 @@ class PCHeader extends React.Component{
         const userShow = this.state.hasLogined 
         ?
         // <Menu.Item key="logout">
-        <div style={{"float":"right"}}>
+        <div style={{textAlign: "center"}}>
             <Avatar size="large">{this.state.userID}</Avatar>
             <span> Hi, {this.state.userNickname} </span>
             <Link to="/userinfo" target="_blank">
@@ -94,7 +94,7 @@ class PCHeader extends React.Component{
         // </Menu.Item> 
         :
         // <Menu.Item key="register">
-        <div style={{"float":"right"}}>
+        <div style={{textAlign: "center"}}>
             <Button type="primary" onClick={()=>this.showModal(true)}><Icon type="user" />Sign Up</Button>
         </div>
         // </Menu.Item>
@@ -103,9 +103,7 @@ class PCHeader extends React.Component{
         return(
             <header>
                 <Modal title="User" visible={this.state.modalVisible}
-                onCancel={()=>this.showModal(false)}
-                onOk={()=>this.showModal(false)}
-                cancelText="Cancel" okText="Done">
+                onCancel={()=>this.showModal(false)} footer={null}>
                     <Tabs defaultActiveKey="1" onChange={this.callback.bind(this)}>
                         <Tabs.TabPane key="1" tab="Login">
                             <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -137,13 +135,13 @@ class PCHeader extends React.Component{
 
                 <Row>
                     <Col span={2}></Col>
-                    <Col span={8}>
+                    <Col sm={20} md={10}>
                         <a href="/" className="logo">
                             <img src="./src/images/icon.png" alt="logo"/>
                             <span>News Website</span>
                         </a>
                     </Col>
-                    <Col span={12}>
+                    <Col sm={20} md={10}>
                         {/* <Menu selectedKeys={[this.state.current]} mode="horizontal"
                         onClick={this.handleClick.bind(this)}>
                             <Menu.Item key="top">
