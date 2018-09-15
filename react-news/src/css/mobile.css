@@ -1,0 +1,15 @@
+.mobileLogo{
+    flex: 1;
+    background: #eee;
+    padding-left: 20px;
+}
+
+.mobileLogo img{
+    height: 50px;
+}
+
+.mobileLogo span{
+    font-size: 30px;
+    vertical-align: top;
+    padding-left: 5px;
+}
